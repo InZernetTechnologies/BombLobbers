@@ -13,12 +13,12 @@ public class main implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("bl")) {
-            if (args.length < 2){
+            if (args[0].isEmpty()){
                 sender.sendMessage("/bl <join|leave>");
                 return true;
             }
             if (args[0].equalsIgnoreCase("join")) {
-                if (args.length < 3){
+                if (args[1].isEmpty()){
                     sender.sendMessage("/bl join <Blue|Read");
                     return true;
                 }
@@ -43,7 +43,7 @@ public class main implements CommandExecutor {
                 return true;
             }
             if (args[0].equalsIgnoreCase("create")) {
-                if (args.length < 3){
+                if (args[1].isEmpty()){
                     sender.sendMessage("/bls create <map>");
                     return true;
                 }
@@ -51,7 +51,7 @@ public class main implements CommandExecutor {
                 sender.sendMessage("Added map!");
                 com.inzernettechnologies.bomblobbers.main.instance.saveConfig();
             } else if (args[0].equalsIgnoreCase("addspawn")) {
-                if (args.length < 4){
+                if (args[2].isEmpty()){
                     sender.sendMessage("/bls addspawn <map> <Blue|Red>");
                     return true;
                 }
@@ -63,7 +63,7 @@ public class main implements CommandExecutor {
                 com.inzernettechnologies.bomblobbers.main.instance.saveConfig();
             }
         } else if (label.equalsIgnoreCase("bla")) {
-            if (args.length < 2){
+            if (args[0].isEmpty()){
                 sender.sendMessage("/bla <regen>");
                 return true;
             }
