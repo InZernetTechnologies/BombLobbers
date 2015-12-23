@@ -9,18 +9,22 @@ import org.bukkit.entity.Player;
 
 public class ActionBar {
     private String message;
-    public void setMessage(String message){
-        this.message = message;
-    }
-    public String getMessage(){
+
+    public String getMessage() {
         return this.message;
     }
-    public void broadcastActionBar(){
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void broadcastActionBar() {
         for (Player list : Bukkit.getOnlinePlayers()) {
             sendTo(list.getPlayer());
         }
     }
-    public void sendTo(Player p){
+
+    public void sendTo(Player p) {
         CraftPlayer craftplayer = (CraftPlayer) p;
         IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', message.replaceAll("%player%", p.getName())) + "\"}");
         PacketPlayOutChat packet = new PacketPlayOutChat(cbc, (byte) 2);

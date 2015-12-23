@@ -16,7 +16,7 @@ public class main {
 
     MySQL SQL = new MySQL();
 
-    public void logBlock(List<nBlock> blocksList){
+    public void logBlock(List<nBlock> blocksList) {
         Bukkit.getScheduler().runTaskAsynchronously(com.inzernettechnologies.bomblobbers.main.instance, new Runnable() {
             @Override
             public void run() {
@@ -38,24 +38,24 @@ public class main {
         });
     }
 
-    public void regen(){
+    public void regen() {
         /*Bukkit.getScheduler().runTaskAsynchronously(com.inzernettechnologies.bomblobbers.main.instance, new Runnable() {
             @Override
             public void run() {*/
-                ResultSet blockSet = SQL.getBlocks();
-                try {
-                    while (blockSet.next()) {
-                        Block newBlock = Bukkit.getWorld(blockSet.getString(2)).getBlockAt(new Location(Bukkit.getWorld(blockSet.getString(2)), blockSet.getInt(3), blockSet.getInt(4), blockSet.getInt(5)));
-                        newBlock.setType(Material.getMaterial(blockSet.getString(6)));
-                        newBlock.setData(blockSet.getByte(7));
-                        //SQL.removeBlock(blockSet.getInt(1));
-                        if (blockSet.isLast()){
-                            break;
-                        }
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+        ResultSet blockSet = SQL.getBlocks();
+        try {
+            while (blockSet.next()) {
+                Block newBlock = Bukkit.getWorld(blockSet.getString(2)).getBlockAt(new Location(Bukkit.getWorld(blockSet.getString(2)), blockSet.getInt(3), blockSet.getInt(4), blockSet.getInt(5)));
+                newBlock.setType(Material.getMaterial(blockSet.getString(6)));
+                newBlock.setData(blockSet.getByte(7));
+                //SQL.removeBlock(blockSet.getInt(1));
+                if (blockSet.isLast()) {
+                    break;
                 }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
             /*}
         });*/
     }

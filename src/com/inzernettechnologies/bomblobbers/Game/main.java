@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.*;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -17,24 +16,24 @@ import java.util.List;
 import java.util.Random;
 
 public class main {
-    private static gameStates gameState;
     public static String currentMap = "WAITING";
-    com.inzernettechnologies.bomblobbers.Database.main DB = new com.inzernettechnologies.bomblobbers.Database.main();
-    com.inzernettechnologies.bomblobbers.Game.team team = new com.inzernettechnologies.bomblobbers.Game.team();
-    com.inzernettechnologies.bomblobbers.libs.TNTParticle particle = new com.inzernettechnologies.bomblobbers.libs.TNTParticle();
+    private static gameStates gameState;
     private static int progressBarID;
     private static int givePlayerTNTID;
     private static double progress;
+    com.inzernettechnologies.bomblobbers.Database.main DB = new com.inzernettechnologies.bomblobbers.Database.main();
+    com.inzernettechnologies.bomblobbers.Game.team team = new com.inzernettechnologies.bomblobbers.Game.team();
+    com.inzernettechnologies.bomblobbers.libs.TNTParticle particle = new com.inzernettechnologies.bomblobbers.libs.TNTParticle();
 
-    public gameStates getGameState(){
+    public gameStates getGameState() {
         return gameState;
     }
 
-    public void setGameState(gameStates gs){
+    public void setGameState(gameStates gs) {
         gameState = gs;
     }
 
-    public void gameWarmup(){
+    public void gameWarmup() {
         preStart();
         assignArmour();
         spawnPlayers();
@@ -54,26 +53,26 @@ public class main {
                 percent = progress / max;
 
                 int i = 0;
-                for (; i <= (int) (percent * 24); i++){
+                for (; i <= (int) (percent * 24); i++) {
                     bar += ChatColor.GREEN + "▌";
                 }
-                for (; i <= 24; i ++){
+                for (; i <= 24; i++) {
                     bar += ChatColor.RED + "▌";
                 }
 
                 ab.setMessage("Game Start " + bar + " " + org.bukkit.ChatColor.RESET + ((Double.parseDouble(nf.format(progress - max)) < 0) ? -Double.parseDouble(nf.format(progress - max)) : Double.parseDouble(nf.format(progress - max))) + " Seconds");
                 for (Player p : team.getPlayers()) {
                     ab.sendTo(p);
-                    if(Double.parseDouble(nf.format(progress))%1 == 0){
+                    if (Double.parseDouble(nf.format(progress)) % 1 == 0) {
                         p.playNote(p.getLocation(), Instrument.PIANO, new Note(12));
                     }
                 }
-                if (Double.parseDouble(nf.format(progress)) == max){
+                if (Double.parseDouble(nf.format(progress)) == max) {
 
-                    for (Player pl : team.getPlayers()){
+                    for (Player pl : team.getPlayers()) {
                         pl.playNote(pl.getLocation(), Instrument.PIANO, new Note(14));
                         bar = "";
-                        for (int b = 0; b <= 24; b++){
+                        for (int b = 0; b <= 24; b++) {
                             bar += "▌";
                         }
                         ab.setMessage("Game Start " + org.bukkit.ChatColor.GREEN + bar + org.bukkit.ChatColor.RESET + " 0.0" + " Seconds");
@@ -87,7 +86,7 @@ public class main {
         }, 2, 2);
     }
 
-    public void givePlayerTNT(){
+    public void givePlayerTNT() {
         if (getGameState().equals(gameStates.STARTED) || getGameState().equals(gameStates.STARTING)) {
             givePlayerTNTID = Bukkit.getScheduler().scheduleSyncRepeatingTask(com.inzernettechnologies.bomblobbers.main.instance, new Runnable() {
                 @Override
@@ -99,7 +98,6 @@ public class main {
                         if (!team.getTeam(player).equals(com.inzernettechnologies.bomblobbers.enums.team.Spectator)) {
 
                             float playerXP = player.getExp();
-                            float maxExp = 1.0f;
                             float newExp = playerXP + 0.025f;
 
                             if (newExp < .99999999999999999999) {
@@ -122,8 +120,8 @@ public class main {
         }
     }
 
-    public void preStart(){
-        for (Player player : team.getPlayers()){
+    public void preStart() {
+        for (Player player : team.getPlayers()) {
             player.getInventory().clear();
             player.setExp(0f);
             player.setLevel(3);
@@ -137,18 +135,24 @@ public class main {
         setGameState(gameStates.STARTED);
     }
 
-    public void endGame(){
+    public void endGame() {
+
+        /*
+
+        TODO: End game
+
+         */
 
     }
 
-    public void spawnPlayers(){
+    public void spawnPlayers() {
         List<String> redSpawns = new ArrayList<String>(com.inzernettechnologies.bomblobbers.main.instance.getConfig().getStringList("config.maps." + currentMap + ".red"));
         List<String> blueSpawns = new ArrayList<String>(com.inzernettechnologies.bomblobbers.main.instance.getConfig().getStringList("config.maps." + currentMap + ".blue"));
 
         Random rand = new Random();
 
         for (Player player : team.getPlayers()) {
-            if (team.getTeam(player).equals(com.inzernettechnologies.bomblobbers.enums.team.Red)){
+            if (team.getTeam(player).equals(com.inzernettechnologies.bomblobbers.enums.team.Red)) {
                 int i = rand.nextInt(redSpawns.size());
                 String[] split = redSpawns.get(i).split("_");
                 Location loc = new Location(Bukkit.getWorld(split[0]), Double.parseDouble(split[1]), Double.parseDouble(split[2]), Double.parseDouble(split[3]), Float.parseFloat(split[4]), Float.parseFloat(split[5]));
@@ -165,8 +169,8 @@ public class main {
 
     }
 
-    public void assignArmour(){
-        for (Player p : team.getPlayers()){
+    public void assignArmour() {
+        for (Player p : team.getPlayers()) {
             ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
             ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
             ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
@@ -200,9 +204,9 @@ public class main {
     }
 
 
-    public String selectMap(){
+    public String selectMap() {
         List<String> aMaps = new ArrayList<String>();
-        ConfigurationSection cs =com.inzernettechnologies.bomblobbers.main.instance.getConfig().getConfigurationSection("config.maps");
+        ConfigurationSection cs = com.inzernettechnologies.bomblobbers.main.instance.getConfig().getConfigurationSection("config.maps");
         for (String s : cs.getKeys(false)) {
             if (com.inzernettechnologies.bomblobbers.main.instance.getConfig().getBoolean("config.maps." + s + ".enabled")) {
                 aMaps.add(s);
@@ -216,44 +220,54 @@ public class main {
         }
     }
 
-    public boolean isMinimumMet(){
-        /*if (team.getTeamCount(com.inzernettechnologies.bomblobbers.enums.team.Red) >= 1 && team.getTeamCount(com.inzernettechnologies.bomblobbers.enums.team.Blue) >= 1){
+    public boolean isMinimumMet() {
+        if (team.getTeamCount(com.inzernettechnologies.bomblobbers.enums.team.Red) >= 1 && team.getTeamCount(com.inzernettechnologies.bomblobbers.enums.team.Blue) >= 1){
             return true;
         } else {
             return false;
-        }*/
-        return true;
+        }
     }
 
-    public void autoStart(){
-        new BukkitRunnable(){
+    public void autoStart() {
+        new BukkitRunnable() {
             int countdown = com.inzernettechnologies.bomblobbers.main.instance.getConfig().getInt("game.automation.waitTime");
 
             @Override
-            public void run(){
-                if (countdown != 0 && countdown >= 0){
+            public void run() {
+                if (isMinimumMet()) {
 
-                    if (currentMap == "WAITING") {
-                        currentMap = selectMap();
+                    if (countdown != 0 && countdown >= 0) {
+
+                        if (currentMap == "WAITING") {
+                            currentMap = selectMap();
+                        }
+
+                        com.inzernettechnologies.bomblobbers.libs.ActionBar ab = new ActionBar();
+
+                        ab.setMessage("Starting in: " + countdown + " " + (countdown == 1 ? "second" : "seconds"));
+
+                        for (Player p : team.getPlayers()) {
+                            ab.sendTo(p);
+                        }
+
+                        countdown--;
+                    } else {
+
+                        cancel();
+
+                        if (isMinimumMet()) {
+                            gameWarmup();
+                        } else {
+                            autoStart();
+                        }
                     }
-
+                } else {
                     com.inzernettechnologies.bomblobbers.libs.ActionBar ab = new ActionBar();
 
-                    ab.setMessage("Starting in: " + countdown + " " + (countdown == 1 ? "second" : "seconds"));
+                    ab.setMessage("Waiting for Players");
 
-                    for (Player p : team.getPlayers()){
+                    for (Player p : Bukkit.getOnlinePlayers()) {
                         ab.sendTo(p);
-                    }
-
-                    countdown --;
-                } else {
-
-                    cancel();
-
-                    if (isMinimumMet()){
-                        gameWarmup();
-                    } else {
-                        autoStart();
                     }
                 }
             }

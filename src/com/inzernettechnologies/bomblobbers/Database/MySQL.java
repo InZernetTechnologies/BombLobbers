@@ -8,7 +8,7 @@ public class MySQL {
 
     private static Connection connection;
 
-    public static void openConnection(){
+    public static void openConnection() {
         Bukkit.getScheduler().runTaskAsynchronously(com.inzernettechnologies.bomblobbers.main.instance, new Runnable() {
             @Override
             public void run() {
@@ -28,18 +28,18 @@ public class MySQL {
         });
     }
 
-    public static ResultSet getBlocks(){
+    public static ResultSet getBlocks() {
         ResultSet blockSet = null;
-            try {
-                PreparedStatement lBlock = connection.prepareStatement("SELECT * FROM `bl_regen`");
-                blockSet = lBlock.executeQuery();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
+        try {
+            PreparedStatement lBlock = connection.prepareStatement("SELECT * FROM `bl_regen`");
+            blockSet = lBlock.executeQuery();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         return blockSet;
     }
 
-    public synchronized static void logError(Exception e){
+    public synchronized static void logError(Exception e) {
         Bukkit.getScheduler().runTaskAsynchronously(com.inzernettechnologies.bomblobbers.main.instance, new Runnable() {
             @Override
             public void run() {
@@ -52,12 +52,7 @@ public class MySQL {
         });
     }
 
-    public synchronized Connection getConnection(){
-        return connection;
-    }
-
-
-    public synchronized static void closeConnection(){
+    public synchronized static void closeConnection() {
         Bukkit.getScheduler().runTaskAsynchronously(com.inzernettechnologies.bomblobbers.main.instance, new Runnable() {
             @Override
             public void run() {
@@ -70,6 +65,10 @@ public class MySQL {
                 }
             }
         });
+    }
+
+    public synchronized Connection getConnection() {
+        return connection;
     }
 
 }

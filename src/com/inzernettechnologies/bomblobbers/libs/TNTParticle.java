@@ -1,7 +1,6 @@
 package com.inzernettechnologies.bomblobbers.libs;
 
 import com.inzernettechnologies.bomblobbers.enums.gameStates;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -12,15 +11,15 @@ public class TNTParticle {
 
     private static ArrayList<TNTPrimed> tntArray = new ArrayList<>();
 
-    public void addTNT(TNTPrimed tntPrimed){
+    public void addTNT(TNTPrimed tntPrimed) {
         tntArray.add(tntPrimed);
     }
 
-    public void removeTNT(TNTPrimed tntPrimed){
+    public void removeTNT(TNTPrimed tntPrimed) {
         tntArray.remove(tntPrimed);
     }
 
-    public void particleLoop(){
+    public void particleLoop() {
         com.inzernettechnologies.bomblobbers.Game.main game = new com.inzernettechnologies.bomblobbers.Game.main();
         new BukkitRunnable() {
             @Override

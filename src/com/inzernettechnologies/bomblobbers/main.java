@@ -3,7 +3,6 @@ package com.inzernettechnologies.bomblobbers;
 import com.inzernettechnologies.bomblobbers.Database.MySQL;
 import com.inzernettechnologies.bomblobbers.Listeners.*;
 import com.inzernettechnologies.bomblobbers.enums.gameStates;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,7 +13,7 @@ public class main extends JavaPlugin {
     com.inzernettechnologies.bomblobbers.Game.main main = new com.inzernettechnologies.bomblobbers.Game.main();
     com.inzernettechnologies.bomblobbers.Signs.main signs = new com.inzernettechnologies.bomblobbers.Signs.main();
 
-    public void onEnable(){
+    public void onEnable() {
 
         saveDefaultConfig();
 
@@ -38,11 +37,14 @@ public class main extends JavaPlugin {
 
         main.autoStart();
         main.setGameState(gameStates.WAITING_FOR_PLAYERS);
-        signs.updateSigns();
+
+        // Taking out join, etc signs.
+
+        //signs.updateSigns();
 
     }
 
-    public void onDisable(){
+    public void onDisable() {
         MySQL.closeConnection();
     }
 

@@ -1,9 +1,7 @@
 package com.inzernettechnologies.bomblobbers.Listeners;
 
 import com.inzernettechnologies.bomblobbers.enums.gameStates;
-import com.inzernettechnologies.bomblobbers.enums.team;
 import com.inzernettechnologies.bomblobbers.main;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.EntityType;
@@ -24,7 +22,7 @@ public class PlayerInteract implements Listener {
     com.inzernettechnologies.bomblobbers.libs.TNTParticle particle = new com.inzernettechnologies.bomblobbers.libs.TNTParticle();
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void event (PlayerInteractEvent e){
+    public void event(PlayerInteractEvent e) {
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK && (e.getClickedBlock().getType() == Material.SIGN_POST || e.getClickedBlock().getType() == Material.WALL_SIGN)) {
             Sign sign = (Sign) e.getClickedBlock().getState();
             if (sign.getLine(0).equals(s.colorize(main.instance.getConfig().getString("signs.gameJoin.firstLine")))) {

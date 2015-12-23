@@ -23,7 +23,7 @@ public class DoubleJump {
         }
     }
 
-    public void useJump(PlayerToggleFlightEvent event){
+    public void useJump(PlayerToggleFlightEvent event) {
         if (canUse(event.getPlayer())) {
             event.setCancelled(true);
             event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.IRONGOLEM_THROW, 10, -10);

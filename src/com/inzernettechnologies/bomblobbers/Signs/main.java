@@ -7,19 +7,16 @@ import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
-
-import java.util.Map;
 
 public class main {
 
     com.inzernettechnologies.bomblobbers.Game.team team = new com.inzernettechnologies.bomblobbers.Game.team();
 
-    public String colorize(String input){
+    public String colorize(String input) {
         return ChatColor.translateAlternateColorCodes('&', input);
     }
 
-    public String replace(String input){
+    public String replace(String input) {
 
         input = input.replaceAll("%max%", "16");
         input = input.replaceAll("%cur%", "" + team.getPlayers().size());
@@ -31,11 +28,11 @@ public class main {
 
     }
 
-    public void updateSigns(){
-        new BukkitRunnable(){
+    public void updateSigns() {
+        new BukkitRunnable() {
 
             @Override
-            public void run(){
+            public void run() {
 
                 ConfigurationSection cs = com.inzernettechnologies.bomblobbers.main.instance.getConfig().getConfigurationSection("config.signs");
 

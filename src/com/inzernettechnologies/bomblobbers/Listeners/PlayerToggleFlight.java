@@ -15,9 +15,9 @@ public class PlayerToggleFlight implements Listener {
     team team = new team();
     DoubleJump doubleJump = new DoubleJump();
 
-    @EventHandler (priority = EventPriority.HIGHEST)
-    public void event (PlayerToggleFlightEvent e){
-        if (main.getGameState() == gameStates.STARTED && team.getPlayers().contains(e.getPlayer())){
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void event(PlayerToggleFlightEvent e) {
+        if (main.getGameState() == gameStates.STARTED && team.getPlayers().contains(e.getPlayer())) {
             doubleJump.useJump(e);
         }
     }

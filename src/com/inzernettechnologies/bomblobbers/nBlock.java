@@ -10,7 +10,7 @@ public class nBlock {
     public Material type;
     public String data;
 
-    public nBlock(Block b){
+    public nBlock(Block b) {
         this.l = b.getLocation();
         this.type = b.getType();
         this.data = b.getData() + "";

@@ -1,8 +1,6 @@
 package com.inzernettechnologies.bomblobbers.Listeners;
 
-import com.inzernettechnologies.bomblobbers.Signs.main;
 import org.bukkit.Sound;
-import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,7 +12,7 @@ public class SignChange implements Listener {
     com.inzernettechnologies.bomblobbers.Signs.main s = new com.inzernettechnologies.bomblobbers.Signs.main();
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void event (SignChangeEvent e){
+    public void event(SignChangeEvent e) {
         if (e.getLine(0).equals(com.inzernettechnologies.bomblobbers.main.instance.getConfig().getString("signs.gameJoin.registerPrefix"))) {
             e.setLine(0, s.colorize(com.inzernettechnologies.bomblobbers.main.instance.getConfig().getString("signs.gameJoin.firstLine")));
             e.setLine(1, s.colorize(com.inzernettechnologies.bomblobbers.main.instance.getConfig().getString("signs.gameJoin.secondLine")));

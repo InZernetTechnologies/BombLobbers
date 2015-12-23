@@ -20,10 +20,10 @@ public class EntityExplode implements Listener {
     com.inzernettechnologies.bomblobbers.Regeneration.main regen = new com.inzernettechnologies.bomblobbers.Regeneration.main();
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void event (EntityExplodeEvent e){
-        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP){
+    public void event(EntityExplodeEvent e) {
+        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP) {
             List<nBlock> blockList = new ArrayList<nBlock>();
-            for (Block b : e.blockList()){
+            for (Block b : e.blockList()) {
                 blockList.add(new nBlock(b));
                 FallingBlock fallingblock = b.getWorld().spawnFallingBlock(b.getLocation(), b.getType(), b.getData());
                 fallingblock.setDropItem(false);

@@ -13,9 +13,9 @@ public class EntityChangeBlock implements Listener {
     com.inzernettechnologies.bomblobbers.Game.main main = new main();
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void event (EntityChangeBlockEvent e){
-        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP){
-            if (e.getEntity() instanceof FallingBlock){
+    public void event(EntityChangeBlockEvent e) {
+        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP) {
+            if (e.getEntity() instanceof FallingBlock) {
                 //ParticleEffect.BLOCK_CRACK.display(new ParticleEffect.ParticleData(Material.GOLD_BLOCK), 1, 1, 1, );
                 e.setCancelled(true);
             }

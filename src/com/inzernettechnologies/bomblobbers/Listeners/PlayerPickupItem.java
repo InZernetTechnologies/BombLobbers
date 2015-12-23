@@ -13,9 +13,9 @@ public class PlayerPickupItem implements Listener {
     main main = new main();
     team team = new team();
 
-    @EventHandler (priority = EventPriority.HIGHEST)
-    public void event (PlayerPickupItemEvent e){
-        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP && team.getPlayers().contains(e.getPlayer())){
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void event(PlayerPickupItemEvent e) {
+        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP && team.getPlayers().contains(e.getPlayer())) {
             e.setCancelled(true);
         }
     }

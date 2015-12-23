@@ -14,8 +14,8 @@ public class BlockPlace implements Listener {
     com.inzernettechnologies.bomblobbers.Game.team team = new team();
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void event (BlockPlaceEvent e){
-        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP && team.getPlayers().contains(e.getPlayer())){
+    public void event(BlockPlaceEvent e) {
+        if (main.getGameState() == gameStates.STARTED || main.getGameState() == gameStates.WARMUP && team.getPlayers().contains(e.getPlayer())) {
             e.setCancelled(true);
         }
     }
