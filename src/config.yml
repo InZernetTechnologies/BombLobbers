@@ -1,0 +1,64 @@
+chat:
+  prefix: "&1[ BombLobbers ]&2 "
+
+signs:
+  gameJoin:
+    # %max% -> max player for game
+    # %cur% -> current players in game
+    # %map% -> map name
+    registerPrefix: "BLGame"
+    firstLine: "BombLobbers"
+    secondLine: "%cur% / %max%"
+    thirdLine: "Map: %map%"
+    fourthLine: "Click to join!"
+  teamJoin-Blue:
+      # %blue% -> get number on blue team
+      registerPrefix: "BLTeamBlue"
+      firstLine: "Come join Blue!"
+      secondLine: "Currently:"
+      thirdLine: "&b%blue%"
+      fourthLine: "Click to join!"
+  teamJoin-Red:
+      # %red% -> get number on red team
+      registerPrefix: "BLTeamRed"
+      firstLine: "Come join Red!"
+      secondLine: "Currently:"
+      thirdLine: "&c%red%"
+      fourthLine: "Click to join!"
+
+
+game:
+  TNT:
+    multiplier: 2 # The higher the number the farther it will go
+    buyPrice: 1.25 # permission node: bomblobbers.buymore
+  particles: 2 # How often particles loop (20 = 1 second)
+  automation:
+    enabled: true # [TODO]
+    gameTime: 120 # In seconds [TODO]
+    waitTime: 20 # In seconds
+    gameWarmup: 5.9 # In seconds [TODO]
+  event:
+    priority: HIGHEST # Do not change unless causing issues with other plugins [TODO]
+  doubleJump:
+    enabled: true # [TODO]
+    usage: 1
+  rewards:
+    type: money # [TODO]
+    value: 10 # [TODO]
+database: # [TODO]
+  type: YML
+  host: ""
+  database: ""
+  port: 3306
+  username: ""
+  password: ""
+
+###  ####   ##   # #### #####   #### ###  # #####   # # #
+#  # #  #   # #  # #  #   #     #    #  # #   #     # # #
+#  # #  #   #  # # #  #   #     ###  #  # #   #     # # #
+#  # #  #   #  # # #  #   #     #    #  # #   #
+###  ####   #   ## ####   #     #### ###  #   #     # # #
+
+config:
+  signs:
+  maps:
