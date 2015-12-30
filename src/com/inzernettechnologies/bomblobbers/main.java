@@ -11,7 +11,6 @@ public class main extends JavaPlugin {
     public static main instance;
 
     com.inzernettechnologies.bomblobbers.Game.main main = new com.inzernettechnologies.bomblobbers.Game.main();
-    com.inzernettechnologies.bomblobbers.Signs.main signs = new com.inzernettechnologies.bomblobbers.Signs.main();
 
     public void onEnable() {
 
@@ -32,15 +31,13 @@ public class main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerToggleFlight(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerPickupItem(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
-        Bukkit.getPluginManager().registerEvents(new SignChange(), this);
+        //Bukkit.getPluginManager().registerEvents(new SignChange(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClick(), this);
 
         main.autoStart();
         main.setGameState(gameStates.WAITING_FOR_PLAYERS);
-
-        // Taking out join, etc signs.
-
-        //signs.updateSigns();
 
     }
 
