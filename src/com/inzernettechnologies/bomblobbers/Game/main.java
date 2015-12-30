@@ -7,6 +7,7 @@ import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -105,11 +106,11 @@ public class main {
                             } else {
                                 if (player.getInventory().getItem(0) != null) {
                                     if (player.getInventory().getItem(0).getAmount() < player.getLevel()) {
-                                        player.getInventory().addItem(new ItemStack(Material.TNT, 1));
+                                        player.getInventory().addItem(TNT());
                                         player.setExp(0f);
                                     }
                                 } else {
-                                    player.getInventory().addItem(new ItemStack(Material.TNT, 1));
+                                    player.getInventory().addItem(TNT());
                                     player.setExp(0f);
                                 }
                             }
@@ -118,6 +119,14 @@ public class main {
                 }
             }, 0, 2);
         }
+    }
+
+    public ItemStack TNT(){
+        ItemStack tnt = new ItemStack(Material.TNT, 1);
+        ItemMeta tntmeta = tnt.getItemMeta();
+        tntmeta.setDisplayName(ChatColor.YELLOW + "Throwing TNT");
+        tnt.setItemMeta(tntmeta);
+        return tnt;
     }
 
     public void preStart() {
@@ -264,7 +273,7 @@ public class main {
                 } else {
                     com.inzernettechnologies.bomblobbers.libs.ActionBar ab = new ActionBar();
 
-                    ab.setMessage("Waiting for Players");
+                    ab.setMessage(ChatColor.DARK_BLUE + "Blue: " + team.getTeamCount(com.inzernettechnologies.bomblobbers.enums.team.Blue) + ChatColor.RESET + " | " + ChatColor.RED + "Red: " + team.getTeamCount(com.inzernettechnologies.bomblobbers.enums.team.Red));
 
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         ab.sendTo(p);
