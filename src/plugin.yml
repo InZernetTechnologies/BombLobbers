@@ -1,7 +1,9 @@
 name: BombLobbers
 version: 1.0.0
-description:
+description: BombLobbers
 author: craycray_coco
+website: https://inzernettechnologies.com/
+softdepend: [Vault]
 main: com.inzernettechnologies.bomblobbers.main
 
 commands:
@@ -22,3 +24,7 @@ commands:
         description: BombLobbers Admin
         permission: bomblobbers.admin
         permission-message: You want to be an admin, eh? Goodluck :)
+
+permissions:
+    bomblobbers.user:
+        default: true
