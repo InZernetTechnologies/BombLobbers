@@ -20,10 +20,10 @@ public class PlayerMove implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void event(PlayerMoveEvent e) {
 
-        if (e.getPlayer().getLocation().getBlock().isLiquid() && main.getGameState() == gameStates.STARTED && team.getPlayers().contains(e.getPlayer())) {
+        if (e.getPlayer().getLocation().getBlock().isLiquid() && main.getGameState() == gameStates.STARTED && team.getPlayers().contains(e.getPlayer()) && team.getTeam(e.getPlayer()) != com.inzernettechnologies.bomblobbers.enums.team.Spectator) {
             e.getPlayer().damage(2);
-        } else if (main.getGameState() == gameStates.WARMUP && team.getPlayers().contains(e.getPlayer()) && ((e.getFrom().getX() != e.getTo().getZ()) || (e.getFrom().getZ() != e.getTo().getZ()))) {
-            e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), e.getFrom().getX(), e.getPlayer().getLocation().getY(), e.getFrom().getZ(), e.getPlayer().getLocation().getYaw(), e.getPlayer().getLocation().getPitch()));
+        } else if (main.getGameState() == gameStates.WARMUP && team.getPlayers().contains(e.getPlayer()) && ((e.getFrom().getX() != e.getTo().getX()) || (e.getFrom().getZ() != e.getTo().getZ()))) {
+            e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), e.getFrom().getX(), e.getFrom().getY(), e.getFrom().getZ(), e.getTo().getYaw(), e.getTo().getPitch()));
         } else if (e.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() != Material.AIR && !e.getPlayer().isFlying() && main.getGameState() == gameStates.STARTED && doubleJump.canUse(e.getPlayer())) {
             e.getPlayer().setAllowFlight(true);
         }
