@@ -11,7 +11,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
 public class PlayerInteract implements Listener {
@@ -39,7 +38,7 @@ public class PlayerInteract implements Listener {
         } else if (game.getGameState() == gameStates.STARTED && e.getPlayer().getItemInHand().getType() == Material.TNT && team.getPlayers().contains(e.getPlayer())) {
             if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 e.setCancelled(true);
-                e.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
+                e.getPlayer().getInventory().removeItem(game.TNT());
                 TNTPrimed tnt = (TNTPrimed) e.getPlayer().getWorld().spawnEntity(e.getPlayer().getEyeLocation().add(0, 1, 0), EntityType.PRIMED_TNT);
                 tnt.setVelocity(e.getPlayer().getEyeLocation().getDirection().multiply(main.instance.getConfig().getInt("game.TNT.multiplier")));
                 if (team.getTeam(e.getPlayer()).equals(com.inzernettechnologies.bomblobbers.enums.team.Blue)) {
